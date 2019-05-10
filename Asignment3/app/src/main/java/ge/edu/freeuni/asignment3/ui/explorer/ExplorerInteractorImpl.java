@@ -1,4 +1,4 @@
-package ge.edu.freeuni.asignment3.ui.navigation;
+package ge.edu.freeuni.asignment3.ui.explorer;
 
 /*
  * created by tgeldiashvili on 5/8/2019
@@ -25,22 +25,20 @@ public class ExplorerInteractorImpl implements ExplorerContract.ExplorerInteract
         File curFile = new File(path);
         List<FileInfo> fileContent = new ArrayList<>();
         for (String it : curFile.list()) {
-            String filePath = path + "/" + it;
-            File itFile = new File(filePath);
-            if (curFile.isDirectory()) {
-                try {
-                    BasicFileAttributes attrs = Files.readAttributes(curFile.toPath(), BasicFileAttributes.class);
-                    String creationTime = attrs.creationTime().toString();
-                    long size;
-                    if (curFile.isDirectory()) {
-                        size = curFile.list().length;
-                    } else {
-                        size = attrs.size();
-                    }
-                    fileContent.add(new FileInfo(FileTypeHelper.getIconByType(it), it, creationTime, size));
-                } catch (IOException e) {
-                    e.printStackTrace();
+            File itFile = new File(path + "/" + it);
+            try {
+                BasicFileAttributes attrs = Files.readAttributes(itFile.toPath(), BasicFileAttributes.class);
+                String creationTime = attrs.creationTime().toString();
+                String size;
+                if (itFile.isDirectory()) {
+                    size = itFile.listFiles().length + " items";
+                } else {
+                    size = attrs.size() + " kb";
                 }
+                fileContent.add(new FileInfo(FileTypeHelper.getIconByType(it), it, creationTime, size));
+            } catch (IOException e) {
+                e.printStackTrace();
+
             }
         }
         onFinishListener.onDirectoryDataLoaded(fileContent);

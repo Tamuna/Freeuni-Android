@@ -1,4 +1,4 @@
-package ge.edu.freeuni.asignment3.ui.navigation;
+package ge.edu.freeuni.asignment3.ui.explorer;
 
 /*
  * created by tgeldiashvili on 5/8/2019
@@ -11,7 +11,7 @@ import ge.edu.freeuni.asignment3.model.FileInfo;
 public interface ExplorerContract {
     interface ExplorerView {
         void onDataLoaded(List<FileInfo> directoryContent);
-        void loadPdf(String path);
+        void editTxt(String path);
     }
 
     interface ExplorerPresenter {

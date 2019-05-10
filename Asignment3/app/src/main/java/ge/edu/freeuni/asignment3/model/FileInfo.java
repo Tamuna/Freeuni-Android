@@ -8,9 +8,9 @@ public class FileInfo {
     private int type;
     private String fileName;
     private String createDate;
-    private Long size;
+    private String size;
 
-    public FileInfo(int type, String fileName, String createDate, long size) {
+    public FileInfo(int type, String fileName, String createDate, String size) {
         this.type = type;
         this.fileName = fileName;
         this.createDate = createDate;
@@ -26,10 +26,10 @@ public class FileInfo {
     }
 
     public String getCreateDate() {
-        return createDate;
+        return createDate.substring(0, 10);
     }
 
-    public Long getSize() {
+    public String getSize() {
         return size;
     }
 }

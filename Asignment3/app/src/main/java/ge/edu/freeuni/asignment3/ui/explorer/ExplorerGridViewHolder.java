@@ -1,4 +1,4 @@
-package ge.edu.freeuni.asignment3.ui.navigation.recycler;
+package ge.edu.freeuni.asignment3.ui.explorer;
 
 /*
  * created by tgeldiashvili on 5/8/2019
@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import ge.edu.freeuni.asignment3.R;
 import ge.edu.freeuni.asignment3.model.FileInfo;

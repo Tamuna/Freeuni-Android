@@ -1,4 +1,4 @@
-package ge.edu.freeuni.asignment3.ui.navigation.recycler;
+package ge.edu.freeuni.asignment3.ui.explorer;
 
 /*
  * created by tgeldiashvili on 5/8/2019

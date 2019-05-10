@@ -1,4 +1,4 @@
-package ge.edu.freeuni.asignment3.ui.navigation.recycler;
+package ge.edu.freeuni.asignment3.ui.explorer;
 
 /*
  * created by tgeldiashvili on 5/8/2019
@@ -36,7 +36,7 @@ public class ExplorerRecyclerAdapter extends RecyclerView.Adapter<ExplorerViewHo
 
 
     private List<FileInfo> data = new ArrayList<>();
-    private boolean isListLayout = false;
+    private static boolean isListLayout = false;
     private OnItemClickListener onItemClickListener;
 
     @NonNull
@@ -44,10 +44,10 @@ public class ExplorerRecyclerAdapter extends RecyclerView.Adapter<ExplorerViewHo
     public ExplorerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         if (isListLayout) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_list_file, null);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_list_file, parent, false);
             return new ExplorerListViewHolder(view);
         } else {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_grid_file, null);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_grid_file, parent, false);
             return new ExplorerGridViewHolder(view);
         }
     }
@@ -62,8 +62,8 @@ public class ExplorerRecyclerAdapter extends RecyclerView.Adapter<ExplorerViewHo
         return data.size();
     }
 
-    public void setListLayout(boolean isListLayout) {
-        this.isListLayout = isListLayout;
+    public void setListLayout(boolean listLayout) {
+        isListLayout = listLayout;
         notifyDataSetChanged();
     }
 }

@@ -1,4 +1,4 @@
-package ge.edu.freeuni.asignment3.ui.navigation;
+package ge.edu.freeuni.asignment3.ui.explorer;
 
 /*
  * created by tgeldiashvili on 5/8/2019
@@ -22,19 +22,19 @@ public class ExplorerPresenterImpl implements ExplorerContract.ExplorerPresenter
 
     @Override
     public void handleFileClick(String dirName) {
-        String path = "";
+        String path;
         if (dirName != null) {
             path = currentPlace + "/" + dirName;
+            File file = new File(path);
+            if (!file.isDirectory()) {
+                view.editTxt(path);
+                path = currentPlace.substring(0, path.lastIndexOf('/'));
+            }
         } else {
             path = currentPlace.substring(0, currentPlace.lastIndexOf('/'));
         }
-        File file = new File(path);
-        if (file.isDirectory()) {
-            interactor.getDirectoryContent(new OnFinishListenerImpl(), path);
-        } else {
-            view.loadPdf(path);
-        }
         currentPlace = path;
+        interactor.getDirectoryContent(new OnFinishListenerImpl(), currentPlace);
     }
 
     public class OnFinishListenerImpl implements ExplorerContract.ExplorerInteractor.OnFinishListener {
