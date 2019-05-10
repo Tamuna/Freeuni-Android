@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,10 +17,11 @@ import java.io.FileReader;
 
 import ge.edu.freeuni.asignment3.R;
 
-public class TextEditorActivity extends AppCompatActivity {
+public class TextEditorActivity extends AppCompatActivity implements SaveFileDialogFragment.NoticeDialogListener {
 
     private EditText etFile;
     private TextView btnSave;
+    private String path;
 
     public static void start(String path, Context previous) {
         Intent intent = new Intent(previous, TextEditorActivity.class);
@@ -32,12 +34,13 @@ public class TextEditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_editor);
 
+        path = getIntent().getStringExtra("path");
         etFile = findViewById(R.id.et_file);
         btnSave = findViewById(R.id.tv_save);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveFile();
+                SaveFileDialogFragment.newInstance(path.substring(path.lastIndexOf('/') + 1)).show(getSupportFragmentManager(), "alert");
             }
         });
         loadFile();
@@ -45,7 +48,7 @@ public class TextEditorActivity extends AppCompatActivity {
     }
 
     private void loadFile() {
-        String path = getIntent().getStringExtra("path");
+
         StringBuilder text = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
@@ -64,17 +67,28 @@ public class TextEditorActivity extends AppCompatActivity {
 
     }
 
-    public void saveFile() {
+    public void saveFile(String name) {
         String text = etFile.getText().toString();
-        String path = getIntent().getStringExtra("path");
         File file = new File(path);
         try {
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(text.getBytes());
             fos.close();
+            file.renameTo(new File(path.substring(0, path.lastIndexOf('/')) + "/" + name));
         } catch (Exception e) {
             e.printStackTrace();
         }
         finish();
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog, String name) {
+        dialog.dismiss();
+        saveFile(name);
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        dialog.dismiss();
     }
 }

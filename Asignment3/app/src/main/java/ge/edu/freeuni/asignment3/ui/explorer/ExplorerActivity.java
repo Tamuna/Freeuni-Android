@@ -77,6 +77,11 @@ public class ExplorerActivity extends AppCompatActivity implements ExplorerContr
         }
     }
 
+    @Override
+    protected void onResume() {
+        presenter.handleFileClick("");
+        super.onResume();
+    }
 
     @Override
     public void onDataLoaded(List<FileInfo> directoryContent) {
@@ -100,7 +105,7 @@ public class ExplorerActivity extends AppCompatActivity implements ExplorerContr
 
         @Override
         public void onItemClick(FileInfo item) {
-            presenter.handleFileClick(item.getFileName());
+            presenter.handleFileClick("/" + item.getFileName());
         }
     }
 
@@ -108,6 +113,4 @@ public class ExplorerActivity extends AppCompatActivity implements ExplorerContr
     public void onBackPressed() {
         presenter.handleFileClick(null);
     }
-
-
 }

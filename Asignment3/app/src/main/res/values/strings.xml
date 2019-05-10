@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Tamuna\'s Explorer</string>
     <string name="save">save</string>
+    <string name="dilaog_save_file">Do you want to save the file content?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="enter_file_name">Enter File Name</string>
 </resources>

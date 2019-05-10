@@ -22,9 +22,11 @@ public class ExplorerPresenterImpl implements ExplorerContract.ExplorerPresenter
 
     @Override
     public void handleFileClick(String dirName) {
-        String path;
+        String path = "";
+        //if not going back
         if (dirName != null) {
-            path = currentPlace + "/" + dirName;
+            //go one step deeper
+            path = currentPlace + dirName;
             File file = new File(path);
             if (!file.isDirectory()) {
                 view.editTxt(path);
