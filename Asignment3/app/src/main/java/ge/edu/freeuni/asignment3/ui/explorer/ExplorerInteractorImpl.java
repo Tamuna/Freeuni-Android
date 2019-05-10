@@ -38,7 +38,6 @@ public class ExplorerInteractorImpl implements ExplorerContract.ExplorerInteract
                 fileContent.add(new FileInfo(FileTypeHelper.getIconByType(it), it, creationTime, size));
             } catch (IOException e) {
                 e.printStackTrace();
-
             }
         }
         onFinishListener.onDirectoryDataLoaded(fileContent);

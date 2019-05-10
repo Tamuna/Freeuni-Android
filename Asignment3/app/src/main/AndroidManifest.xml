@@ -12,9 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.textediting.TextEditorActivity" />
-        <activity android:name=".ui.PdfReaderActivity" />
-        <activity android:name=".ui.explorer.ExplorerActivity">
+        <activity
+            android:name=".ui.textediting.TextEditorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PdfReaderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.explorer.ExplorerActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
