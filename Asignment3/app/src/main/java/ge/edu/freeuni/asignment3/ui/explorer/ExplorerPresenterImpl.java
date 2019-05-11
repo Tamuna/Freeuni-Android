@@ -13,19 +13,21 @@ public class ExplorerPresenterImpl implements ExplorerContract.ExplorerPresenter
     private static String currentPlace = "/storage/emulated/0";
 
     private ExplorerContract.ExplorerView view;
-    ExplorerContract.ExplorerInteractor interactor;
+    private ExplorerContract.ExplorerInteractor interactor;
 
     public ExplorerPresenterImpl(ExplorerContract.ExplorerView view, ExplorerContract.ExplorerInteractor interactor) {
         this.view = view;
         this.interactor = interactor;
     }
 
+    private boolean standingOnRoot() {
+        return currentPlace.equals("/storage/emulated/0");
+    }
+
     @Override
     public void handleFileClick(String dirName) {
-        String path = "";
-        //if not going back
+        String path;
         if (dirName != null) {
-            //go one step deeper
             path = currentPlace + dirName;
             File file = new File(path);
             if (!file.isDirectory()) {
@@ -33,7 +35,12 @@ public class ExplorerPresenterImpl implements ExplorerContract.ExplorerPresenter
                 path = currentPlace.substring(0, path.lastIndexOf('/'));
             }
         } else {
-            path = currentPlace.substring(0, currentPlace.lastIndexOf('/'));
+            if (standingOnRoot()) {
+                view.finishApplication();
+                return;
+            } else {
+                path = currentPlace.substring(0, currentPlace.lastIndexOf('/'));
+            }
         }
         currentPlace = path;
         interactor.getDirectoryContent(new OnFinishListenerImpl(), currentPlace);

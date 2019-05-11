@@ -27,9 +27,9 @@ public class ExplorerActivity extends AppCompatActivity implements ExplorerContr
     private RecyclerView recyclerView;
     private ImageView imgChangeLayout;
     private static boolean listLayout = false;
-    LinearLayoutManager linearLayoutManager;
-    GridLayoutManager gridLayoutManager;
-    ExplorerRecyclerAdapter adapter;
+    private LinearLayoutManager linearLayoutManager;
+    private GridLayoutManager gridLayoutManager;
+    private ExplorerRecyclerAdapter adapter;
     private OnItemClickListenerImpl onItemClickListener;
 
     @Override
@@ -98,6 +98,11 @@ public class ExplorerActivity extends AppCompatActivity implements ExplorerContr
     @Override
     public void editTxt(String path) {
         TextEditorActivity.start(path, ExplorerActivity.this);
+    }
+
+    @Override
+    public void finishApplication() {
+        finish();
     }
 
 

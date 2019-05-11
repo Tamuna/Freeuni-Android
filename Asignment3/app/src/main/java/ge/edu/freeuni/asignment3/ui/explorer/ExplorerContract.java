@@ -12,6 +12,7 @@ public interface ExplorerContract {
     interface ExplorerView {
         void onDataLoaded(List<FileInfo> directoryContent);
         void editTxt(String path);
+        void finishApplication();
     }
 
     interface ExplorerPresenter {
