@@ -24,20 +24,22 @@ public class ExplorerInteractorImpl implements ExplorerContract.ExplorerInteract
     public void getDirectoryContent(OnFinishListener onFinishListener, String path) {
         File curFile = new File(path);
         List<FileInfo> fileContent = new ArrayList<>();
-        for (String it : curFile.list()) {
-            File itFile = new File(path + "/" + it);
-            try {
-                BasicFileAttributes attrs = Files.readAttributes(itFile.toPath(), BasicFileAttributes.class);
-                String creationTime = attrs.creationTime().toString();
-                String size;
-                if (itFile.isDirectory()) {
-                    size = itFile.listFiles().length + " items";
-                } else {
-                    size = attrs.size() + " kb";
+        if (curFile.list() != null) {
+            for (String it : curFile.list()) {
+                File itFile = new File(path + "/" + it);
+                try {
+                    BasicFileAttributes attrs = Files.readAttributes(itFile.toPath(), BasicFileAttributes.class);
+                    String creationTime = attrs.creationTime().toString();
+                    String size;
+                    if (itFile.isDirectory()) {
+                        size = itFile.listFiles().length + " items";
+                    } else {
+                        size = attrs.size() + " kb";
+                    }
+                    fileContent.add(new FileInfo(FileTypeHelper.getIconByType(it), it, creationTime, size));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                fileContent.add(new FileInfo(FileTypeHelper.getIconByType(it), it, creationTime, size));
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
         onFinishListener.onDirectoryDataLoaded(fileContent);
