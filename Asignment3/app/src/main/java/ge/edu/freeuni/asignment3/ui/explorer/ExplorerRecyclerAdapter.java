@@ -4,7 +4,6 @@ package ge.edu.freeuni.asignment3.ui.explorer;
  * created by tgeldiashvili on 5/8/2019
  */
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +18,18 @@ import ge.edu.freeuni.asignment3.R;
 import ge.edu.freeuni.asignment3.model.FileInfo;
 
 public class ExplorerRecyclerAdapter extends RecyclerView.Adapter<ExplorerViewHolder> {
+    private List<FileInfo> data = new ArrayList<>();
+    private static boolean isListLayout = false;
+    private OnItemClickListener onItemClickListener;
+    private List<Integer> highlights = new ArrayList<>();
 
     public interface OnItemClickListener {
-        void onItemClick(FileInfo item);
+        void onItemClick(FileInfo item, int position);
+
+        void onItemLongClick(FileInfo item, int position);
     }
 
-    public ExplorerRecyclerAdapter(Context context, OnItemClickListener onItemClickListener) {
+    public ExplorerRecyclerAdapter(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -33,11 +38,6 @@ public class ExplorerRecyclerAdapter extends RecyclerView.Adapter<ExplorerViewHo
         this.data.addAll(data);
         notifyDataSetChanged();
     }
-
-
-    private List<FileInfo> data = new ArrayList<>();
-    private static boolean isListLayout = false;
-    private OnItemClickListener onItemClickListener;
 
     @NonNull
     @Override
@@ -54,7 +54,7 @@ public class ExplorerRecyclerAdapter extends RecyclerView.Adapter<ExplorerViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ExplorerViewHolder holder, int position) {
-        holder.setData(data.get(position), onItemClickListener);
+        holder.setData(data.get(position), onItemClickListener, highlights.contains(position));
     }
 
     @Override
@@ -65,5 +65,22 @@ public class ExplorerRecyclerAdapter extends RecyclerView.Adapter<ExplorerViewHo
     public void setListLayout(boolean listLayout) {
         isListLayout = listLayout;
         notifyDataSetChanged();
+    }
+
+    public void highlight(int position) {
+        highlights.add(position);
+        notifyItemChanged(position);
+    }
+
+    public void unhighlight(int position) {
+        highlights.remove((Integer) position);
+        notifyItemChanged(position);
+    }
+
+    public void unhighlightAll() {
+        for (Integer i : highlights) {
+            notifyItemChanged(i);
+        }
+        highlights.clear();
     }
 }

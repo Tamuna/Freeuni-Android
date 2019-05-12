@@ -14,14 +14,16 @@ import ge.edu.freeuni.asignment3.R;
 
 public class TextEditorActivity extends AppCompatActivity implements SaveFileDialogFragment.NoticeDialogListener, TextEditorContract.TextEditorView {
 
+    public static final String ARG_PATH = "path";
     private EditText etFile;
     private TextView btnSave;
+
     private String path;
     private TextEditorContract.TextEditorPresenter presenter;
 
     public static void start(String path, Context previous) {
         Intent intent = new Intent(previous, TextEditorActivity.class);
-        intent.putExtra("path", path);
+        intent.putExtra(ARG_PATH, path);
         previous.startActivity(intent);
     }
 
@@ -29,7 +31,8 @@ public class TextEditorActivity extends AppCompatActivity implements SaveFileDia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_editor);
-        path = getIntent().getStringExtra("path");
+
+        path = getIntent().getStringExtra(ARG_PATH);
         presenter = new TextEditorPresenterImpl(this, new TextEditorInteractorImpl(), path);
 
         etFile = findViewById(R.id.et_file);
@@ -40,6 +43,7 @@ public class TextEditorActivity extends AppCompatActivity implements SaveFileDia
                 SaveFileDialogFragment.newInstance(path.substring(path.lastIndexOf('/') + 1)).show(getSupportFragmentManager(), "alert");
             }
         });
+
         presenter.loadFile();
     }
 

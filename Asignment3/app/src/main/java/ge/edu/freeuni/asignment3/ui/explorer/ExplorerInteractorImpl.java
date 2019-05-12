@@ -42,4 +42,13 @@ public class ExplorerInteractorImpl implements ExplorerContract.ExplorerInteract
         }
         onFinishListener.onDirectoryDataLoaded(fileContent);
     }
+
+    @Override
+    public void deleteFiles(OnFinishListener onFinishListener, String path, List<String> files) {
+        for (String file : files) {
+            File toDelete = new File(path + file);
+            toDelete.delete();
+        }
+        onFinishListener.onDeletion();
+    }
 }

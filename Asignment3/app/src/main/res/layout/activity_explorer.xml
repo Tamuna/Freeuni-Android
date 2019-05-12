@@ -9,7 +9,7 @@
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:background="@color/colorPrimary"
         android:contentInsetStart="0dp">
 
@@ -24,11 +24,12 @@
                 android:layout_marginStart="10dp"
                 android:text="@string/app_name"
                 android:textAllCaps="true"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_path"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,13 +40,42 @@
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/layout"
                 android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/textView"
+                app:layout_constraintEnd_toStartOf="@+id/img_delete"
+                app:layout_constraintTop_toTopOf="@id/textView" />
+
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_width="26dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="10dp"
+                android:tint="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textView"
+                app:srcCompat="@drawable/delete" />
+
+            <TextView
+                android:id="@+id/tv_path"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="start"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </Toolbar>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_explorer"
@@ -54,5 +84,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

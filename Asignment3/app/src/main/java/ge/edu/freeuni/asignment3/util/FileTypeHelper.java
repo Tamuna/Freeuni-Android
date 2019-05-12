@@ -10,7 +10,7 @@ import ge.edu.freeuni.asignment3.R;
 
 public class FileTypeHelper {
 
-    private static String getFileExtension(String fileName) {
+    public static String getFileExtension(String fileName) {
         int dotIndex = fileName.lastIndexOf('.');
         return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
     }

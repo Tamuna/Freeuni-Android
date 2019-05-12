@@ -26,11 +26,11 @@ public class SaveFileDialogFragment extends DialogFragment {
     }
 
     NoticeDialogListener listener;
+    private static final String ARG_FILENAME = "filename";
 
     public static SaveFileDialogFragment newInstance(String filename) {
-
         Bundle args = new Bundle();
-        args.putString("filename", filename);
+        args.putString(ARG_FILENAME, filename);
         SaveFileDialogFragment fragment = new SaveFileDialogFragment();
         fragment.setArguments(args);
         return fragment;
@@ -41,7 +41,7 @@ public class SaveFileDialogFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        filename = getArguments().getString("filename");
+        filename = getArguments().getString(ARG_FILENAME);
         listener = (NoticeDialogListener) getContext();
     }
 

@@ -16,7 +16,7 @@
             android:name=".ui.textediting.TextEditorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.PdfReaderActivity"
+            android:name=".ui.pdfview.PdfReaderActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.explorer.ExplorerActivity"

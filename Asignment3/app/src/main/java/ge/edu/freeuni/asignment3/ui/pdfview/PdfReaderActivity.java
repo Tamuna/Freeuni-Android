@@ -1,17 +1,19 @@
-package ge.edu.freeuni.asignment3.ui;
+package ge.edu.freeuni.asignment3.ui.pdfview;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.webkit.WebView;
+import com.github.barteksc.pdfviewer.PDFView;
+
+import java.io.File;
 
 import ge.edu.freeuni.asignment3.R;
 
 public class PdfReaderActivity extends AppCompatActivity {
-    private WebView webView;
+    private PDFView pdfView;
 
     public static void start(String path, Activity previous) {
         Intent intent = new Intent(previous, PdfReaderActivity.class);
@@ -23,10 +25,8 @@ public class PdfReaderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_reader);
-
-        webView = findViewById(R.id.webView);
+        pdfView = findViewById(R.id.pdfView);
         String path = getIntent().getStringExtra("path");
-
-        webView.loadUrl("file:///android_asset/pdfjs/web/viewer.html?file=" + path);
+        pdfView.fromFile(new File(path)).load();
     }
 }

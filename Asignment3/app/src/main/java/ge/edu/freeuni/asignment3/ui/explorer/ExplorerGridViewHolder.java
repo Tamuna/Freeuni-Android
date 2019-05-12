@@ -4,6 +4,7 @@ package ge.edu.freeuni.asignment3.ui.explorer;
  * created by tgeldiashvili on 5/8/2019
  */
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,13 +24,26 @@ public class ExplorerGridViewHolder extends ExplorerViewHolder {
         imgIcon = itemView.findViewById(R.id.img_icon_grid);
     }
 
-    public void setData(final FileInfo fileInfo, final ExplorerRecyclerAdapter.OnItemClickListener onItemClicnkListener) {
+    public void setData(final FileInfo fileInfo, final ExplorerRecyclerAdapter.OnItemClickListener onItemClickListener, boolean contains) {
         tvTitle.setText(fileInfo.getFileName());
         imgIcon.setImageResource(fileInfo.getType());
+        if (contains) {
+            itemView.setBackgroundColor(Color.parseColor("#978BC34A"));
+        }else{
+            itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+        }
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClicnkListener.onItemClick(fileInfo);
+                onItemClickListener.onItemClick(fileInfo, getAdapterPosition());
+            }
+
+        });
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onItemClickListener.onItemLongClick(fileInfo, getAdapterPosition());
+                return true;
             }
         });
     }
