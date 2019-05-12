@@ -28,7 +28,7 @@ public class ExplorerGridViewHolder extends ExplorerViewHolder {
         tvTitle.setText(fileInfo.getFileName());
         imgIcon.setImageResource(fileInfo.getType());
         if (contains) {
-            itemView.setBackgroundColor(Color.parseColor("#978BC34A"));
+            itemView.setBackgroundColor(Color.parseColor("#00BBB2"));
         }else{
             itemView.setBackgroundColor(Color.parseColor("#ffffff"));
         }

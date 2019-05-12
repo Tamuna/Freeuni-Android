@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/bg"
         android:contentInsetStart="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

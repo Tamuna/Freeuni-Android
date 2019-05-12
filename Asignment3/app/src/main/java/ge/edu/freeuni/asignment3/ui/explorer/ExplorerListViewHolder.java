@@ -34,7 +34,7 @@ public class ExplorerListViewHolder extends ExplorerViewHolder {
         tvSize.setText(fileInfo.getSize());
         tvCreateTime.setText(fileInfo.getCreateDate());
         if (contains) {
-            itemView.setBackgroundColor(Color.parseColor("#978BC34A"));
+            itemView.setBackgroundColor(Color.parseColor("#00BBB2"));
         } else {
             itemView.setBackgroundColor(Color.parseColor("#ffffff"));
         }

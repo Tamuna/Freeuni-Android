@@ -30,6 +30,10 @@ public class FileTypeHelper {
                 return R.drawable.txt;
             case "zip":
                 return R.drawable.zip;
+            case "pdf":
+                return R.drawable.pdf;
+            case "jpg":
+                return R.drawable.jpg;
         }
         return R.drawable.folder;
     }
