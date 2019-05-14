@@ -16,5 +16,5 @@ public abstract class ExplorerViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public abstract void setData(FileInfo fileInfo, ExplorerRecyclerAdapter.OnItemClickListener onItemClickListener, boolean contains);
+    public abstract void setData(FileInfo fileInfo, ExplorerRecyclerAdapter.OnItemClickListener onItemClickListener, boolean highlighted);
 }

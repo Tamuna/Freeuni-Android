@@ -28,13 +28,14 @@ public class ExplorerListViewHolder extends ExplorerViewHolder {
         tvCreateTime = itemView.findViewById(R.id.tv_create_date);
     }
 
-    public void setData(final FileInfo fileInfo, final ExplorerRecyclerAdapter.OnItemClickListener onItemClickListener, boolean contains) {
+    public void setData(final FileInfo fileInfo, final ExplorerRecyclerAdapter.OnItemClickListener onItemClickListener, boolean highlighted) {
         tvTitle.setText(fileInfo.getFileName());
         imgIcon.setImageResource(fileInfo.getType());
         tvSize.setText(fileInfo.getSize());
         tvCreateTime.setText(fileInfo.getCreateDate());
-        if (contains) {
-            itemView.setBackgroundColor(Color.parseColor("#00BBB2"));
+
+        if (highlighted) {
+            itemView.setBackgroundColor(Color.parseColor("#978BC34A"));
         } else {
             itemView.setBackgroundColor(Color.parseColor("#ffffff"));
         }

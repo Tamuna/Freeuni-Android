@@ -24,11 +24,11 @@ public class ExplorerGridViewHolder extends ExplorerViewHolder {
         imgIcon = itemView.findViewById(R.id.img_icon_grid);
     }
 
-    public void setData(final FileInfo fileInfo, final ExplorerRecyclerAdapter.OnItemClickListener onItemClickListener, boolean contains) {
+    public void setData(final FileInfo fileInfo, final ExplorerRecyclerAdapter.OnItemClickListener onItemClickListener, boolean highlighted) {
         tvTitle.setText(fileInfo.getFileName());
         imgIcon.setImageResource(fileInfo.getType());
-        if (contains) {
-            itemView.setBackgroundColor(Color.parseColor("#00BBB2"));
+        if (highlighted) {
+            itemView.setBackgroundColor(Color.parseColor("#978BC34A"));
         }else{
             itemView.setBackgroundColor(Color.parseColor("#ffffff"));
         }
