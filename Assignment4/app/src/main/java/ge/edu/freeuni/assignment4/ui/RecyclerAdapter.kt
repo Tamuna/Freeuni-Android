@@ -1,5 +1,6 @@
 package ge.edu.freeuni.assignment4.ui
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,12 @@ import ge.edu.freeuni.assignment4.data.entity.Note
 * created by tgeldiashvili on 5/22/2019
 */
 
-class RecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
         private const val TYPE_HEADER: Int = 0
         private const val TYPE_NOTE: Int = 1
     }
+
 
     private var data: ArrayList<Any> = ArrayList()
 
@@ -31,18 +33,24 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val view: View
         if (viewType == TYPE_NOTE) {
             view = LayoutInflater.from(parent.context).inflate(R.layout.cell_note, parent, false)
-            return NoteViewHolder(parent)
+            return NoteViewHolder(view)
         }
-        view = LayoutInflater.from(parent.context).inflate(R.layout.cell_header, parent, false)
+        view =
+            LayoutInflater.from(parent.context).inflate(R.layout.cell_header, parent, false)
         return HeaderViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return data.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val type = holder.itemViewType
+        if (type == TYPE_NOTE) {
+            (holder as NoteViewHolder).setData(data[position] as Note, context)
+        } else {
+            (holder as HeaderViewHolder).setData(data[position] as String)
+        }
     }
 
     fun setData(data: List<Any>) {
