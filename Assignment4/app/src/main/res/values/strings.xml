@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Assignment4</string>
-    <string name="take_a_note">Take a note...</string>
+    <string name="take_a_note">Take a noteEntity...</string>
     <string name="search_your_notes">Search your notes</string>
     <string name="_1_checked_item">+1 checked item</string>
 </resources>

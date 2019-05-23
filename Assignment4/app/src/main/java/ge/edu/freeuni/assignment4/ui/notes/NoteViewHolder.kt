@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment4.ui
+package ge.edu.freeuni.assignment4.ui.notes
 
 import android.content.Context
 import android.view.View
@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import ge.edu.freeuni.assignment4.R
-import ge.edu.freeuni.assignment4.data.entity.Note
+import ge.edu.freeuni.assignment4.data.entity.NoteEntity
+import ge.edu.freeuni.assignment4.ui.model.NoteModel
 
 
 /*
@@ -26,8 +27,8 @@ class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         ButterKnife.bind(this, itemView)
     }
 
-    fun setData(note: Note, context: Context) {
-        tvNoteHeader.text = note.header
-        note.todoes?.map { layoutTodoes.addView(TodoComponent(context)) }
+    fun setData(noteModel: NoteModel, context: Context) {
+        tvNoteHeader.text = noteModel.header
+        noteModel.todoes.map { layoutTodoes.addView(TodoComponent(context)) }
     }
 }

@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment4.ui
+package ge.edu.freeuni.assignment4.ui.notes
 
 import android.content.Context
 import android.util.AttributeSet

@@ -1,7 +1,7 @@
 package ge.edu.freeuni.assignment4.data.dao
 
 import androidx.room.*
-import ge.edu.freeuni.assignment4.data.entity.Note
+import ge.edu.freeuni.assignment4.data.entity.NoteEntity
 
 
 /*
@@ -10,12 +10,15 @@ import ge.edu.freeuni.assignment4.data.entity.Note
 
 @Dao
 interface NoteDao {
-    @Query("SELECT * FROM note")
-    fun getAll(): List<Note>
+    @Query("SELECT * FROM NoteEntity")
+    fun getAll(): List<NoteEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNote(note: Note)
+    fun insertNote(noteEntity: NoteEntity)
 
     @Delete
-    fun delete(note: Note)
+    fun delete(noteEntity: NoteEntity)
+
+    @Update
+    fun update(noteEntity: NoteEntity)
 }

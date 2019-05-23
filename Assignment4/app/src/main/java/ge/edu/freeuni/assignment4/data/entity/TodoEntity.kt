@@ -13,14 +13,14 @@ import androidx.room.PrimaryKey
 
 @Entity(
     foreignKeys = [ForeignKey(
-        entity = Note::class,
+        entity = NoteEntity::class,
         parentColumns = arrayOf("id"),
         childColumns = arrayOf("note_id"),
         onDelete = CASCADE
 
     )]
 )
-data class Todo(
+data class TodoEntity(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "note_id") val noteId: Int,
     val isDone: Boolean?,
