@@ -2,21 +2,22 @@ package ge.edu.freeuni.assignment4.ui.editing
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
 import android.widget.ImageView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import ge.edu.freeuni.assignment4.R
+import ge.edu.freeuni.assignment4.ui.BaseActivity
 import ge.edu.freeuni.assignment4.ui.model.NoteModel
 import ge.edu.freeuni.assignment4.ui.notes.MainActivity
 
-class SingleNoteActivity : AppCompatActivity(), SingleNoteContract.SingleNoteView {
+class SingleNoteActivity : BaseActivity(), SingleNoteContract.SingleNoteView {
 
     @BindView(R.id.imgPin)
     lateinit var imgPin: ImageView
+
+    private lateinit var presenter: SingleNotePresenterImpl
 
     companion object {
         private const val NOTE = "note"
@@ -40,15 +41,22 @@ class SingleNoteActivity : AppCompatActivity(), SingleNoteContract.SingleNoteVie
         setContentView(R.layout.activity_edit_note)
         ButterKnife.bind(this)
 
+
         val note = intent.getParcelableExtra<NoteModel>(NOTE)
-        if(note != null){
+        presenter = SingleNotePresenterImpl(note, this, SingleNoteInteractorImpl(appDatabase.noteDao()))
+        if (note != null) {
 
         }
     }
 
     @OnClick(R.id.imgBack)
     fun onBackClicked() {
-        //presenter.saveNote()
+        presenter.saveNote()
+    }
+
+    @OnClick(R.id.imgPin)
+    fun onPinClicked() {
+        presenter.pinNote()
     }
 
 
@@ -56,8 +64,12 @@ class SingleNoteActivity : AppCompatActivity(), SingleNoteContract.SingleNoteVie
         MainActivity.start(this)
     }
 
-    override fun markPinned() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun markPinned(isPinned: Boolean) {
+        if (isPinned) {
+            imgPin.setImageResource(R.drawable.pinned)
+        } else {
+            imgPin.setImageResource(R.drawable.pin)
+        }
     }
 
 

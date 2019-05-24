@@ -1,5 +1,7 @@
 package ge.edu.freeuni.assignment4.ui.editing
 
+import ge.edu.freeuni.assignment4.ui.model.NoteModel
+
 
 /*
 * created by tgeldiashvili on 5/23/2019
@@ -8,7 +10,7 @@ package ge.edu.freeuni.assignment4.ui.editing
 interface SingleNoteContract {
     interface SingleNoteView {
         fun goToMain()
-        fun markPinned()
+        fun markPinned(isPinned: Boolean)
     }
 
     interface SingleNotePresenter {
@@ -20,8 +22,9 @@ interface SingleNoteContract {
         interface OnFinishListener {
             fun onFinished()
         }
-
-        fun saveNote()
-        fun pinNote()
+        fun saveNote(
+            note: NoteModel,
+            onFinishListener: OnFinishListener
+        )
     }
 }

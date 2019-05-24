@@ -11,6 +11,7 @@ import ge.edu.freeuni.assignment4.ui.model.TodoModel
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
 import android.text.Spannable
+import android.widget.EditText
 import android.widget.TextView
 
 /*
@@ -24,13 +25,16 @@ class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     @BindView(R.id.imgCross)
     lateinit var imgCross: ImageView
 
+    @BindView(R.id.etTodoContent)
+    lateinit var etTodoContent: EditText
+
     init {
         ButterKnife.bind(this, itemView)
     }
 
     private fun strikeText(textContent: String) {
-        cbTodo.setText(textContent, TextView.BufferType.SPANNABLE)
-        val spannable = cbTodo.text as Spannable
+        etTodoContent.setText(textContent, TextView.BufferType.SPANNABLE)
+        val spannable = etTodoContent.text as Spannable
         spannable.setSpan(StrikethroughSpan(), 0, textContent.length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
     }
 
@@ -42,7 +46,7 @@ class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             strikeText(todoModel.content)
             cbTodo.isChecked = true
         } else {
-            cbTodo.text = todoModel.content
+            etTodoContent.setText(todoModel.content)
         }
     }
 }
