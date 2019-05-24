@@ -48,11 +48,12 @@
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
+            android:hint="@string/title"
             tools:text="შბათის გეეგმები"
             android:paddingLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:background="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

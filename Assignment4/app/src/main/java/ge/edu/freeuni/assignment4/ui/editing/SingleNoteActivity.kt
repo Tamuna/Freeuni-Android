@@ -11,6 +11,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import ge.edu.freeuni.assignment4.R
 import ge.edu.freeuni.assignment4.ui.model.NoteModel
+import ge.edu.freeuni.assignment4.ui.notes.MainActivity
 
 class SingleNoteActivity : AppCompatActivity(), SingleNoteContract.SingleNoteView {
 
@@ -26,6 +27,11 @@ class SingleNoteActivity : AppCompatActivity(), SingleNoteContract.SingleNoteVie
             intent.putExtra(NOTE, note)
             previous.startActivity(intent)
         }
+
+        fun start(previous: Context) {
+            val intent = Intent(previous, SingleNoteActivity::class.java)
+            previous.startActivity(intent)
+        }
     }
 
 
@@ -33,16 +39,21 @@ class SingleNoteActivity : AppCompatActivity(), SingleNoteContract.SingleNoteVie
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_note)
         ButterKnife.bind(this)
+
+        val note = intent.getParcelableExtra<NoteModel>(NOTE)
+        if(note != null){
+
+        }
     }
 
     @OnClick(R.id.imgBack)
     fun onBackClicked() {
-
+        //presenter.saveNote()
     }
 
 
     override fun goToMain() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        MainActivity.start(this)
     }
 
     override fun markPinned() {
