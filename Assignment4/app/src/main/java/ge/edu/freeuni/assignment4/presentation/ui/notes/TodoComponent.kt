@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment4.ui.notes
+package ge.edu.freeuni.assignment4.presentation.ui.notes
 
 import android.content.Context
 import android.util.AttributeSet
@@ -20,19 +20,13 @@ class TodoComponent @JvmOverloads constructor(context: Context?, attrs: Attribut
     @BindView(R.id.tvSingleTodo)
     lateinit var tvSingleTodo: TextView
 
-    private val unbinder: Unbinder
 
     init {
         View.inflate(context, R.layout.component_todo, this)
-        unbinder = ButterKnife.bind(this)
+        ButterKnife.bind(this)
     }
 
     fun setTodo(todo: String) {
         tvSingleTodo.text = todo
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        unbinder.unbind()
     }
 }

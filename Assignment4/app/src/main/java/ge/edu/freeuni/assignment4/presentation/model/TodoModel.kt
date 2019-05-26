@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment4.ui.model
+package ge.edu.freeuni.assignment4.presentation.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -9,8 +9,7 @@ import kotlinx.android.parcel.Parcelize
 */
 @Parcelize
 data class TodoModel(
-    val id: Int,
-    val noteId: Int,
     val isDone: Boolean,
-    val content: String
-): Parcelable
+    val content: String,
+    val id: Int
+) : Parcelable

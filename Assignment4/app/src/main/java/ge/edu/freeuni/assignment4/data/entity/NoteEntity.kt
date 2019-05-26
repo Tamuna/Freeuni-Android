@@ -9,9 +9,10 @@ import androidx.room.PrimaryKey
 */
 
 @Entity
-data class NoteEntity(
-    @PrimaryKey val id: Int,
+class NoteEntity(
     val isPinned: Boolean?,
-    val header: String?,
-    val todoes: List<TodoEntity>?
-)
+    val header: String?
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null
+}

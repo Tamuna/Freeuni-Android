@@ -1,6 +1,7 @@
-package ge.edu.freeuni.assignment4.ui.editing
+package ge.edu.freeuni.assignment4.presentation.ui.editing
 
-import ge.edu.freeuni.assignment4.ui.model.NoteModel
+import ge.edu.freeuni.assignment4.presentation.model.NoteModel
+import ge.edu.freeuni.assignment4.presentation.model.TodoModel
 
 
 /*
@@ -14,14 +15,15 @@ interface SingleNoteContract {
     }
 
     interface SingleNotePresenter {
-        fun saveNote()
         fun pinNote()
+        fun saveNote(header: String, allNotes: ArrayList<TodoModel>)
     }
 
     interface SingleNoteInteractor {
         interface OnFinishListener {
             fun onFinished()
         }
+
         fun saveNote(
             note: NoteModel,
             onFinishListener: OnFinishListener

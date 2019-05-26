@@ -9,16 +9,21 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ui.editing.SingleNoteActivity">
+        <activity
+                android:name="ge.edu.freeuni.assignment4.presentation.ui.editing.SingleNoteActivity"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.notes.MainActivity">
+        <activity
+                android:name="ge.edu.freeuni.assignment4.presentation.ui.notes.MainActivity"
+                android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.BaseActivity"/>
+        <activity android:name="ge.edu.freeuni.assignment4.presentation.ui.BaseActivity"/>
     </application>
 
 </manifest>

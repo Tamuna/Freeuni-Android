@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment4.ui.notes
+package ge.edu.freeuni.assignment4.presentation.ui.notes
 
 import android.view.View
 import android.widget.TextView

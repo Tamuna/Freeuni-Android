@@ -11,7 +11,7 @@ import ge.edu.freeuni.assignment4.data.entity.TodoEntity
 * created by tgeldiashvili on 5/22/2019
 */
 
-@Database(entities = arrayOf(NoteEntity::class, TodoEntity::class), version = 1)
+@Database(entities = [NoteEntity::class, TodoEntity::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun noteDao(): NoteDao
 }

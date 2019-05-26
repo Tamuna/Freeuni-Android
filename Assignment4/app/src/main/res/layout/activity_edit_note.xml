@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.editing.SingleNoteActivity">
+        tools:context=".presentation.ui.editing.SingleNoteActivity">
 
     <androidx.appcompat.widget.Toolbar
             app:contentInsetStart="0dp"
@@ -49,7 +49,6 @@
 
     <EditText
             android:hint="@string/title"
-            tools:text="შბათის გეეგმები"
             android:paddingLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,15 +59,18 @@
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            android:id="@+id/editText"
+            android:id="@+id/etNoteHeader"
             android:maxLines="1"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/etNoteHeader"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/rvTodoes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

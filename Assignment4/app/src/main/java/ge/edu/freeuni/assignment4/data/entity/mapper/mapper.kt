@@ -1,9 +1,10 @@
 package ge.edu.freeuni.assignment4.data.entity.mapper
 
-import ge.edu.freeuni.assignment4.ui.model.NoteModel
-import ge.edu.freeuni.assignment4.ui.model.TodoModel
+import ge.edu.freeuni.assignment4.data.entity.NoteAndAllTodoes
 import ge.edu.freeuni.assignment4.data.entity.NoteEntity
 import ge.edu.freeuni.assignment4.data.entity.TodoEntity
+import ge.edu.freeuni.assignment4.presentation.model.NoteModel
+import ge.edu.freeuni.assignment4.presentation.model.TodoModel
 
 
 /*
@@ -19,32 +20,41 @@ fun TodoEntity.toModel(): TodoModel {
     this.content?.let {
         content = it
     }
-    return TodoModel(id, noteId, isDone, content)
+    return TodoModel(isDone, content, id!!)
 }
 
-fun NoteEntity.toModel(): NoteModel? {
+fun NoteAndAllTodoes.toModel(): NoteModel {
     var isPinned = false
     var header = ""
-    var todoes: List<TodoEntity> = ArrayList()
-    this.isPinned?.let {
+    var todoes: List<TodoModel> = ArrayList()
+    note.isPinned?.let {
         isPinned = it
     }
-    this.header?.let {
+    note.header?.let {
         header = it
     }
-    this.todoes?.let {
-        todoes = it
+    this.todoes?.let { it1 ->
+        todoes = it1.map { it.toModel() }
     }
-    return NoteModel(id, isPinned, header, todoes.map { it.toModel() })
-}
 
+    return NoteModel(isPinned, header, todoes.count { it.isDone }, todoes, note.id!!)
+}
 
 fun TodoModel.toEntity(): TodoEntity {
-    return TodoEntity(id, noteId, isDone, content)
+    var entity = TodoEntity(isDone, content)
+    if (id >= 0) {
+        entity.id = id
+    }
+    return entity
 }
 
-fun NoteModel.toEntity(): NoteEntity {
-    return NoteEntity(id, isPinned, header, todoes.map { it.toEntity() })
+fun NoteModel.toEntity(): NoteAndAllTodoes {
+    var entity = NoteAndAllTodoes(NoteEntity(isPinned, header), todoes.map { it.toEntity() })
+    if (id >= 0) {
+        entity.note.id = id
+
+    }
+    return entity
 }
 
 
